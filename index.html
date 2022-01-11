@@ -9,10 +9,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style type="text/css">
       body { background: #F5FCFF; color: #333666;overflow: hidden; }
-      section { text-align: center;padding: 50px 0 20px 0; margin: 20px 0 20px 0; position: relative;}
+      section { text-align: center;padding: 50px 0 20px 0; margin: 40px 0 20px 0; position: relative;}
       .panzoom-parent { border: 2px solid #333; }
       .panzoom-parent .panzoom { border: 2px dashed #666; }
       .buttons { margin: 40px 0 0;
+       }
+       .panzoom{
+         position: relative;
+         background: url(./img/GonerbyMap.png);
+         background-size: contain;
+         width: 700px;
+         height: 500px;
+        margin: auto;
        }
        section .buttons{
          position: absolute;
@@ -41,16 +49,27 @@
          transform: scale(1.1);
          color: #1c7cb5;
        }
-       /* section .appendDiv div{
+       section .appendDiv div{
          position: absolute;
          width: 10px;
          height: 10px;
          border: 3px solid blue;
        }
        section .appendDiv div.firstElement{
-        top: 20%;
-       left: 29%;
-       } */
+        top: 12%;
+        left: 8%;
+        transform: translate(14px, -3px);
+       }
+       section .appendDiv div.secondElement{
+        top: 23%;
+        left: 18%;
+        transform: translate(-4px, 1px);
+       }
+       section .appendDiv div.thirdElement{
+        top: 38%;
+        left: 27%;
+        transform: translate(10px, -8px);
+       }
     </style>
     <script src="dist/panzoom.js"></script>
   </head>
@@ -58,9 +77,8 @@
     <section>
       <div class="parent">
         <div class="panzoom" id="panzoom-element">
-          <img src="./img/GonerbyMap.png" width="700" height="500">
-        </div>
-        <div class="appendDiv">
+          <div class="appendDiv">
+          </div>
         </div>
       </div>
       <div class="buttons">
@@ -74,11 +92,10 @@ const elem = document.getElementById('panzoom-element');
         const zoomOutButton = document.getElementById('zoom-out');
         const resetButton = document.getElementById('reset');
         const panzoom = Panzoom(elem);
+        console.log(panzoom)
         const parent = elem.parentElement;
-        let incrementCount = 0;
 
-
-        // create multiple div then append it on maps images
+        // create multiple div
         const x = insert_divs = function() {
       var parent = document.querySelector('.appendDiv');
       var installments = [1, 2, 3];
@@ -87,26 +104,24 @@ const elem = document.getElementById('panzoom-element');
       var installment = document.createElement('div');  
       parent.append(installment);
       });
-    //   const elementFirst = parent.querySelectorAll('div');
-    //  if(elementFirst[0]){
-    //   elementFirst[0].classList.add('firstElement');
-    //   if( elementFirst[1]){
-    //     elementFirst[1].classList.add('secondElement');
-    //   }
-    //   if(elementFirst[2]){
-    //     elementFirst[2].classList.add('thirdElement');
-    //   }
-    //  }
-      
-  
-}
+      const elementFirst = parent.querySelectorAll('div');
+     if(elementFirst[0]){
+      elementFirst[0].classList.add('firstElement');
+      if( elementFirst[1]){
+        elementFirst[1].classList.add('secondElement');
+      }
+      if(elementFirst[2]){
+        elementFirst[2].classList.add('thirdElement');
+      }
+     }
+    }
   x();
 // No function bind needed
 parent.addEventListener('wheel', panzoom.zoomWithWheel);
-zoomInButton.addEventListener('click', panzoom.zoomIn)
-zoomOutButton.addEventListener('click', panzoom.zoomOut)
-resetButton.addEventListener('click', panzoom.reset)
+zoomInButton.addEventListener('click', panzoom.zoomIn);
+zoomOutButton.addEventListener('click', panzoom.zoomOut);
+resetButton.addEventListener('click', panzoom.reset);
       </script>
     </section>
-</body>
+></body>
 </html>
