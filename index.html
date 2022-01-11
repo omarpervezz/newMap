@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Map Zoom</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+      body { background: #F5FCFF; color: #333666;overflow: hidden; }
+      section { text-align: center;padding: 50px 0 20px 0; margin: 20px 0 20px 0; position: relative;}
+      .panzoom-parent { border: 2px solid #333; }
+      .panzoom-parent .panzoom { border: 2px dashed #666; }
+      .buttons { margin: 40px 0 0;
+       }
+       section .buttons{
+         position: absolute;
+         right: 0;
+         bottom: 2%;
+         display: flex;
+         flex-direction: column;
+         background-color: #dfdfdf;
+         padding: 8px;
+         border-radius: 5px;
+         box-sizing: border-box;
+         box-shadow: -10px 8px 9px #877f7f;
+       }
+       section .buttons button{
+         margin: 1px 0;
+         outline: none;
+         border: none;
+         background-color: transparent;
+       }
+       section .buttons button i{
+         cursor: pointer;
+         transition-property: transform;
+         transition-duration: 0.6s;
+       }
+       section .buttons button i:hover{
+         transform: scale(1.1);
+         color: #1c7cb5;
+       }
+       /* section .appendDiv div{
+         position: absolute;
+         width: 10px;
+         height: 10px;
+         border: 3px solid blue;
+       }
+       section .appendDiv div.firstElement{
+        top: 20%;
+       left: 29%;
+       } */
+    </style>
+    <script src="dist/panzoom.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="parent">
+        <div class="panzoom" id="panzoom-element">
+          <img src="./img/GonerbyMap.png" width="700" height="500">
+        </div>
+        <div class="appendDiv">
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="zoom-in"><i class="material-icons">zoom_in</i></button>
+        <button id="zoom-out"><i class="material-icons">zoom_out</i></button>
+        <button id="reset"><i class="material-icons">restart_alt</i></button>
+      </div>
+      <script>
+const elem = document.getElementById('panzoom-element');
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
+        const resetButton = document.getElementById('reset');
+        const panzoom = Panzoom(elem);
+        const parent = elem.parentElement;
+        let incrementCount = 0;
+
+
+        // create multiple div then append it on maps images
+        const x = insert_divs = function() {
+      var parent = document.querySelector('.appendDiv');
+      var installments = [1, 2, 3];
+  
+      installments.forEach(function(e){
+      var installment = document.createElement('div');  
+      parent.append(installment);
+      });
+    //   const elementFirst = parent.querySelectorAll('div');
+    //  if(elementFirst[0]){
+    //   elementFirst[0].classList.add('firstElement');
+    //   if( elementFirst[1]){
+    //     elementFirst[1].classList.add('secondElement');
+    //   }
+    //   if(elementFirst[2]){
+    //     elementFirst[2].classList.add('thirdElement');
+    //   }
+    //  }
+      
+  
+}
+  x();
+// No function bind needed
+parent.addEventListener('wheel', panzoom.zoomWithWheel);
+zoomInButton.addEventListener('click', panzoom.zoomIn)
+zoomOutButton.addEventListener('click', panzoom.zoomOut)
+resetButton.addEventListener('click', panzoom.reset)
+      </script>
+    </section>
+</body>
+</html>
